@@ -142,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     )
                   )
                 ),
-                controller: _emailTextController,
+                controller: _pwTextController,
               ),
             ),
             SizedBox(height: 70,),
