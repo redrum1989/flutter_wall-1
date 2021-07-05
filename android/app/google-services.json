@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "803222908951",
+    "project_id": "flutter-wall-aea7a",
+    "storage_bucket": "flutter-wall-aea7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803222908951:android:f0c0eca1655b665d0fac52",
+        "android_client_info": {
+          "package_name": "com.signusfalcon.flutter_wall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803222908951-n0d53aa2njh32v19idmin8a61bkk0qdb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRBjNd9JvO-eA3z3DgdiNRvl5gbool4b4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803222908951-n0d53aa2njh32v19idmin8a61bkk0qdb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
