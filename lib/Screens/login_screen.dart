@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_wall/Services/AuthenticationService.dart';
 import 'package:provider/provider.dart';
 
+import 'choose_screen.dart';
 import 'initial_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -59,63 +60,138 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(50,0,0,0),
-              child: Text("Email"),
-            )
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-            child: TextFormField(
-              controller: _emailTextController,
-              decoration: InputDecoration(
-                fillColor: Colors.grey[400],
-                filled: true,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(height: 75,),
+            Container(
+              child: Image.asset("assets/img/LOGIN2.png",
+              scale: 12,),
+            ),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 3, vertical: 10)),
+            Row(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(50,0,0,0),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 40,),
+                        Text("Email",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold
+                        ),),
+                      ],
+                    ),
+                  )
+                ),
+              ],
+            ),
+            Padding(padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  filled: true,
+                  focusColor: Colors.grey[200],
+                  fillColor: Colors.grey[300],
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: Colors.grey[300],
+                      width: 2
+                    )
+                  )
+                ),
+                controller: _emailTextController,
               ),
             ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(50,50,0,0),
-              child: Text("Password"),
-            )
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(50, 10, 50, 50),
-            child: TextFormField(
-              controller: _pwTextController,
-              obscureText: true,
-              decoration: InputDecoration(
-                fillColor: Colors.grey[400],
-                filled: true,
+            Row(
+              children: [
+                SizedBox(width: 50,),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Password",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                ),)
+                ),
+              ],
+            ),
+            Padding(padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  filled: true,
+                  focusColor: Colors.grey[200],
+                  fillColor: Colors.grey[300],
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: Colors.grey[300],
+                      width: 2
+                    )
+                  )
+                ),
+                controller: _emailTextController,
               ),
             ),
-          ),
-          ButtonBar(
-            alignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed:(){
-                  _signInWithEmailAndPassword(context);
-                },
-                child: Text("Login"),
-              ),
-              ElevatedButton(
-                onPressed:(){
-                  Navigator.of(context).pop();
-                },
-                child: Text("Back"),
-              ),
-            ],
-          ),
-        ],
+            SizedBox(height: 70,),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0),
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(22)
+                    )),
+                    padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 105, vertical: 10)),
+                    backgroundColor: MaterialStateProperty.all(Color(0xfffad000))
+                  ),
+                  onPressed:(){
+                    _signInWithEmailAndPassword(context);
+                  },
+                  child: Text("LOGIN",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold
+                  ),),
+                ),
+                SizedBox(height: 10,),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0),
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(22)
+                    )),
+                    padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 30, vertical: 10)),
+                    backgroundColor: MaterialStateProperty.all(Color(0xff0b5c5d))
+                  ),
+                  onPressed:(){
+                    Navigator.of(context).pushNamed(ChooseScreen.routeName);
+                  },
+                  child: Text("CREATE AN ACCOUNT",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold
+                  ),),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
