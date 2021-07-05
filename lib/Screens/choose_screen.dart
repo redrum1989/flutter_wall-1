@@ -15,28 +15,80 @@ class _ChooseScreenState extends State<ChooseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        
+      
+      ),
       body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Are you a: "
+        child: Column(
+          children: [
+            SizedBox(height: 150,),
+            Text(
+              "ARE YOU A: ",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold
               ),
-              ElevatedButton(
+
+            ),
+            SizedBox(height: 80,),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(60),
+                      bottomRight: Radius.circular(70)
+                    )
+                  ))
+                ),
                 onPressed: (){
                   Navigator.of(context).pushNamed(StudentRegisterScreen.routeName);
                 },
-                child: Text("Student")
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(100, 30, 10, 30),
+                  child: Icon(
+                    Icons.account_circle_sharp,
+                    size: 70,
+                  ),
+                )
               ),
-              ElevatedButton(
-                onPressed: (){
-                  Navigator.of(context).pushNamed(AlumniRegisterScreen.routeName);
-                },
-                child: Text("Alumni")
+            ),
+            SizedBox(height: 20,),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Column(
+                children: [
+                  ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(50),
+                        bottomRight: Radius.circular(50)
+                    )
+                  ))
+                  ),
+                  onPressed: (){
+                  Navigator.of(context).pushNamed(AlumniRegisterScreen.routeName);},
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(110, 20, 10, 20),
+                    child: Icon(
+                      Icons.business_center_rounded,
+                      size: 70,
+                    ),
+                  )
+            ),
+                ],
               ),
-            ],
-          ),
+            ),
+            
+          ],
         ),
       ),
     );
