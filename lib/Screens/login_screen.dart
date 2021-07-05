@@ -135,6 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
               child: TextFormField(
                 decoration: InputDecoration(
+<<<<<<< HEAD
                     filled: true,
                     focusColor: Colors.grey[200],
                     fillColor: Colors.grey[300],
@@ -142,6 +143,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(20),
                         borderSide:
                             BorderSide(color: Colors.grey[300], width: 2))),
+=======
+                  filled: true,
+                  focusColor: Colors.grey[200],
+                  fillColor: Colors.grey[300],
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: Colors.grey[300],
+                      width: 2
+                    )
+                  )
+                ),
+>>>>>>> 873267aeab4d5b103070209d9aa7c25d702dee49
                 controller: _pwTextController,
               ),
             ),

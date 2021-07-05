@@ -39,51 +39,73 @@ class _ChooseScreenState extends State<ChooseScreen> {
             SizedBox(height: 80,),
             Align(
               alignment: Alignment.centerLeft,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(60),
-                      bottomRight: Radius.circular(70)
+              child: Row(
+                children: [
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Color(0xff0b5c5d)),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(70),
+                          bottomRight: Radius.circular(70)
+                        )
+                      ))
+                    ),
+                    onPressed: (){
+                      Navigator.of(context).pushNamed(StudentRegisterScreen.routeName);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(110, 30, 10, 30),
+                      child: Icon(
+                        Icons.account_circle_sharp,
+                        size: 70,
+                      ),
                     )
-                  ))
-                ),
-                onPressed: (){
-                  Navigator.of(context).pushNamed(StudentRegisterScreen.routeName);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(100, 30, 10, 30),
-                  child: Icon(
-                    Icons.account_circle_sharp,
-                    size: 70,
                   ),
-                )
+                  SizedBox(width: 60,),
+                  Text('STUDENT',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold
+                  ),)
+                ],
               ),
             ),
             SizedBox(height: 20,),
             Align(
               alignment: Alignment.centerLeft,
-              child: Column(
+              child: Row(
                 children: [
-                  ElevatedButton(
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(50),
-                        bottomRight: Radius.circular(50)
-                    )
-                  ))
-                  ),
-                  onPressed: (){
-                  Navigator.of(context).pushNamed(AlumniRegisterScreen.routeName);},
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(110, 20, 10, 20),
-                    child: Icon(
-                      Icons.business_center_rounded,
-                      size: 70,
-                    ),
-                  )
+                  Column(
+                    children: [
+                      ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Color(0xfffe4f00)),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(50),
+                            bottomRight: Radius.circular(50)
+                        )
+                      ))
+                      ),
+                      onPressed: (){
+                      Navigator.of(context).pushNamed(AlumniRegisterScreen.routeName);},
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(110, 30, 10, 20),
+                        child: Icon(
+                          Icons.business_center_rounded,
+                          size: 70,
+                        ),
+                      )
             ),
+                    ],
+                  ),
+                  SizedBox(width: 60,),
+                  Text('ALUMNI',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold
+                  ),)
                 ],
               ),
             ),
