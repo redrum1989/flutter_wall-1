@@ -27,24 +27,24 @@ class MyApp extends StatelessWidget {
           create: (_) => AuthenticationService(FirebaseAuth.instance),
         ),
         StreamProvider(
-          create: (context) => context.read<AuthenticationService>().authStateChanges,
+          create: (context) =>
+              context.read<AuthenticationService>().authStateChanges,
           initialData: null,
         ),
       ],
       child: MaterialApp(
         title: 'Flutter Wall',
         builder: (context, widget) => ResponsiveWrapper.builder(
-          BouncingScrollWrapper.builder(context, widget),
-          maxWidth: 1920,
-          minWidth: 480,
-          defaultScale: true,
-          breakpoints: [
-            ResponsiveBreakpoint.autoScale(480, name: MOBILE),
-            ResponsiveBreakpoint.autoScale(800, name: TABLET),
-            ResponsiveBreakpoint.resize(1000, name: DESKTOP),
-          ],
-          background: Container(color: Colors.white)
-        ),
+            BouncingScrollWrapper.builder(context, widget),
+            maxWidth: 1920,
+            minWidth: 480,
+            defaultScale: true,
+            breakpoints: [
+              ResponsiveBreakpoint.autoScale(480, name: MOBILE),
+              ResponsiveBreakpoint.autoScale(800, name: TABLET),
+              ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+            ],
+            background: Container(color: Colors.white)),
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
