@@ -37,6 +37,7 @@ class _StartScreenState extends State<StartScreen> {
                 children: [
                   ElevatedButton(
                     style: ButtonStyle(
+                      padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 80, vertical: 10)),
                       backgroundColor: MaterialStateProperty.all(Color(0xfffe4f00)),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
@@ -47,11 +48,14 @@ class _StartScreenState extends State<StartScreen> {
                     onPressed:(){
                       Navigator.of(context).pushNamed(LoginScreen.routeName);
                     },
-                    child: Text("Login"),
+                    child: Text("LOGIN",
+                    style: TextStyle(fontSize: 20)),
                   ),
+                  Padding(padding: EdgeInsets.symmetric(horizontal: 60, vertical: 5)),
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Color(0xfffe4f00)),
+                      padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 60, vertical: 10)),
+                      backgroundColor: MaterialStateProperty.all(Color(0xff0b5c5d)),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(22.0),
@@ -61,21 +65,25 @@ class _StartScreenState extends State<StartScreen> {
                     onPressed:(){
                       Navigator.of(context).pushNamed(ChooseScreen.routeName);
                     },
-                    child: Text("Register"),
+                    child: Text("REGISTER",
+                    style: TextStyle(fontSize: 20)),
                   ),
                 ],
               ),
-
+              Padding(padding: EdgeInsets.symmetric(
+                    horizontal: 5, vertical: 30,
+                  )),
               TextButton(
                 onPressed:(){
                   context.read<AuthenticationService>().signInAnon();
                 },
                 child: Text(
                   "Continue as Guest",
-                  style: TextStyle(
-                    color: Color(0xfffe4f00),
-                    decoration: TextDecoration.underline,
-                  ),
+                 style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontSize: 15,
+                      color: Colors.black
+                    ),
                 ),
               ),
              
