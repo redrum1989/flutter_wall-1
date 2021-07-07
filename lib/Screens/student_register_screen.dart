@@ -27,6 +27,12 @@ class _StudentRegisterScreenState extends State<StudentRegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      appBar: AppBar(
+                iconTheme: IconThemeData(
+                color: Colors.black),
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+      ),
       body: Stack(
         children: [
           Column(
@@ -38,12 +44,7 @@ class _StudentRegisterScreenState extends State<StudentRegisterScreen> {
               )
             ],
           ),
-          AppBar(
-                iconTheme: IconThemeData(
-                color: Colors.black),
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-              ),
+          
           ListView(
             children: [
               Stack(
@@ -182,20 +183,20 @@ class _StudentRegisterScreenState extends State<StudentRegisterScreen> {
                 padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
                 child: TextFormField(
                   decoration: InputDecoration(
-                  filled: true,
-                  focusColor: Colors.grey[200],
-                  fillColor: Colors.deepOrange[300],
-                  enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
-                    color: Colors.deepOrange[300],
-                    width: 2
-                  )
-                )  
+                    filled: true,
+                    focusColor: Colors.grey[200],
+                    fillColor: Colors.deepOrange[300],
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(
+                        color: Colors.deepOrange[300],
+                        width: 2
+                      )
+                    )  
+                  ),
+                    controller: _currentYearTextController,
+                ),
               ),
-                  controller: _currentYearTextController,
-            ),
-          ),
       
       
               Align(

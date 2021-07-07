@@ -32,6 +32,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     User user = context.watch<User>();
+    if(user==null){
+      return Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
