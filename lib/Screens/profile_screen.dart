@@ -74,13 +74,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     return Column(
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(12.0),
                               child: Container(
-                                width: MediaQuery.of(context).size.width / 2.25,
+                                width: MediaQuery.of(context).size.width / 2.75,
                                 height:
-                                    MediaQuery.of(context).size.width / 2.25,
+                                    MediaQuery.of(context).size.width / 2.75,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   border: Border.all(
@@ -94,55 +95,61 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ),
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                (snapshotPermission.data["permission"] ==
-                                        "Student")
-                                    ? Text(
-                                        "Name:  " +
-                                            snapshot.data["name"] +
-                                            "\n" +
-                                            "College: " +
-                                            snapshot.data["college"] +
-                                            "\n" +
-                                            "Year Level: " +
-                                            snapshot.data["currentYear"] +
-                                            "\n",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    : Text(
-                                        "Name:   " +
-                                            snapshot.data["name"] +
-                                            "\n" +
-                                            "College:  " +
-                                            snapshot.data["college"] +
-                                            "\n" +
-                                            "Current Work:  " +
-                                            snapshot.data["currentWork"] +
-                                            "\n" +
-                                            " Year Started:  " +
-                                            snapshot.data["yearStarted"] +
-                                            "\n" +
-                                            "Year Graduated:  " +
-                                            snapshot.data["yearGraduated"],
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                ElevatedButton(
-                                    onPressed: () {
-                                      context
-                                          .read<AuthenticationService>()
-                                          .signOut();
-                                      Navigator.of(context).popUntil(
-                                          ModalRoute.withName(
-                                              InitialScreen.routeName));
-                                    },
-                                    child: Text("Logout")),
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width / 2,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    (snapshotPermission.data["permission"] ==
+                                            "Student")
+                                        ? Text(
+                                            "Name:  " +
+                                                snapshot.data["name"] +
+                                                "\n" +
+                                                "College: " +
+                                                snapshot.data["college"] +
+                                                "\n" +
+                                                "Year Level: " +
+                                                snapshot.data["currentYear"] +
+                                                "\n",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        : Text(
+                                            "Name:   " +
+                                                snapshot.data["name"] +
+                                                "\n" +
+                                                "College:  " +
+                                                snapshot.data["college"] +
+                                                "\n" +
+                                                "Current Work:  " +
+                                                snapshot.data["currentWork"] +
+                                                "\n" +
+                                                " Year Started:  " +
+                                                snapshot.data["yearStarted"] +
+                                                "\n" +
+                                                "Year Graduated:  " +
+                                                snapshot.data["yearGraduated"],
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          context
+                                              .read<AuthenticationService>()
+                                              .signOut();
+                                          Navigator.of(context).popUntil(
+                                              ModalRoute.withName(
+                                                  InitialScreen.routeName));
+                                        },
+                                        child: Text("Logout")),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
