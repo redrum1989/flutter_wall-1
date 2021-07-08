@@ -7,6 +7,7 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_wall/Model/PostScreenArguments.dart';
 import 'package:flutter_wall/Model/StudentData.dart';
 import 'package:flutter_wall/Screens/post_screen.dart';
+import 'package:flutter_wall/Screens/postcreation_screen.dart';
 import 'package:flutter_wall/Screens/profile_screen.dart';
 import 'package:flutter_wall/Services/AuthenticationService.dart';
 import 'package:flutter_wall/Services/PostsGetter.dart';
@@ -34,14 +35,14 @@ class _MainMenuState extends State<MainMenu> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Guest Mode"),
+                Text("Guest Mode"),   
                 ElevatedButton(
                   onPressed: (){
                     context.read<AuthenticationService>().signOut().then((String msg){
                       Phoenix.rebirth(context);
                     });
                   },
-                  child: Text("Logout")
+                child: Text("Logout")
                 ),
               ],
             ),
@@ -66,6 +67,12 @@ class _MainMenuState extends State<MainMenu> {
                 ButtonBar(
                   alignment: MainAxisAlignment.center,
                   children: [
+                    ElevatedButton(
+                      onPressed: (){
+                        Navigator.of(context).pushNamed(PostCreationScreen.routeName);
+                      },
+                      child: Text("Create a new post")
+                    ),
                     ElevatedButton(
                       onPressed: (){
                         Navigator.of(context).pushNamed(ProfileScreen.routeName);
