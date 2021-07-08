@@ -25,43 +25,45 @@ class _StudentRegisterScreenState extends State<StudentRegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      body: ListView(
-        children: [
-          Column(
-            children: [
-              Stack(
-                children: [
-                  Bg(),
-                  Welcome(),
-                  Student(),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(4, 4, 0, 0),
-                    child: IconButton(onPressed: (){
-                      Navigator.of(context).pop();
-                    }, icon: Icon(
-                      Icons.arrow_back)),
-                  )
-                ],
-              ),
-              SizedBox(height:5),
-              Email(),
-              Emailtext(emailTextController: _emailTextController),
-              Password(),
-              PasswordText(pwTextController: _pwTextController),
-              College(),
-              Collegetext(collegeTextController: _collegeTextController),
-              Currentyear(),
-              CurrentyearText(currentYearTextController: _currentYearTextController),
-              Name(),
-              NameText(nameTextController: _nameTextController),
-              Gender(),
-              Gendertext(genderTextController: _genderTextController),
-              SizedBox(height: 10),
-             Pindutan(emailTextController: _emailTextController, pwTextController: _pwTextController, collegeTextController: _collegeTextController, currentYearTextController: _currentYearTextController, nameTextController: _nameTextController),
-        ]),
-    ]));
+    return SafeArea(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        body: ListView(
+          children: [
+            Column(
+              children: [
+                Stack(
+                  children: [
+                    Bg(),
+                    Welcome(),
+                    Student(),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(4, 4, 0, 0),
+                      child: IconButton(onPressed: (){
+                        Navigator.of(context).pop();
+                      }, icon: Icon(
+                        Icons.arrow_back)),
+                    )
+                  ],
+                ),
+                SizedBox(height:5),
+                Email(),
+                Emailtext(emailTextController: _emailTextController),
+                Password(),
+                PasswordText(pwTextController: _pwTextController),
+                College(),
+                Collegetext(collegeTextController: _collegeTextController),
+                Currentyear(),
+                CurrentyearText(currentYearTextController: _currentYearTextController),
+                Name(),
+                NameText(nameTextController: _nameTextController),
+                Gender(),
+                Gendertext(genderTextController: _genderTextController),
+                SizedBox(height: 10),
+               Pindutan(emailTextController: _emailTextController, pwTextController: _pwTextController, collegeTextController: _collegeTextController, currentYearTextController: _currentYearTextController, nameTextController: _nameTextController),
+          ]),
+      ])),
+    );
   }
 }
 
