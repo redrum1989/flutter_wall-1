@@ -50,5 +50,18 @@ class Database{
     }
   }
 
-
+  Future changeDescription(BuildContext context, String permission, String description) async {
+    try{
+      User firebaseUser = FirebaseAuth.instance.currentUser;
+      if(permission == "Student") {
+        await studentInfo.doc(firebaseUser.uid).set({"description" : description}, SetOptions(merge: true));
+      } else {
+        await alumniInfo.doc(firebaseUser.uid).set({"description" : description}, SetOptions(merge: true));
+      }
+    } catch (e) {
+      return showDialog(context: context, builder: (context){
+        return AlertDialog(content: Text(e.toString()));
+      });
+    }
+  }
 }
