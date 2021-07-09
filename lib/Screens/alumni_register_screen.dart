@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wall/Model/AlumniData.dart';
-import 'package:flutter_wall/Model/StudentData.dart';
 import 'package:flutter_wall/Screens/initial_screen.dart';
 import 'package:flutter_wall/Services/Database.dart';
 
