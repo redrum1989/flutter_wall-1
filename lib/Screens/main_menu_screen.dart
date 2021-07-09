@@ -109,10 +109,10 @@ class _PostBannerState extends State<PostBanner> {
 
   Random rng = new Random();
 
-  List<Color> colors = [Colors.red[200],
-                        Colors.blue[200],
-                        Colors.amber[600],
-                        Colors.pink[200],
+  List<Color> colors = [Colors.yellow[800],
+                        Colors.teal[700],
+                        Colors.amber[800],
+                        Colors.grey,
                         ];
 
   @override
@@ -123,71 +123,91 @@ class _PostBannerState extends State<PostBanner> {
     if((posts  == null)||(userData == null)){
       return Center(child: CircularProgressIndicator());
     } else {
-      return Container(
-        child: GridView.builder(
-          padding: EdgeInsets.all(12),
-          itemCount: posts.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 15.0,
-            mainAxisSpacing: 15.0,
-          ), 
-          itemBuilder: (context, index){
-            return InkWell(
-              onTap: (){
-                Navigator.of(context).pushNamed(PostScreen.routeName, 
-                  arguments: PostScreenArguments(
-                    authorUID: posts[index].authorUID,
-                    text: posts[index].text,
-                    title: posts[index].title
+      return Stack(
+        children: [
+          Container(
+            child: GridView.builder(
+              padding: EdgeInsets.fromLTRB(20, 60, 20, 20),
+              itemCount: posts.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 15.0,
+                mainAxisSpacing: 15.0,
+              ), 
+              itemBuilder: (context, index){
+                return Container(
+                  child: InkWell(
+                    onTap: (){
+                      Navigator.of(context).pushNamed(PostScreen.routeName, 
+                        arguments: PostScreenArguments(
+                          authorUID: posts[index].authorUID,
+                          text: posts[index].text,
+                          title: posts[index].title
+                        ),
+                      );
+                    },
+                    child: Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: colors[rng.nextInt(colors.length)],
+                        ),
+                        alignment: Alignment.center,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(posts[index].title),
+                              StreamBuilder(
+                                stream: FirebaseFirestore.instance.collection("Permission").doc(posts[index].authorUID).snapshots(),
+                                builder: (context, snapshot){
+                                  if((snapshot == null)|| (snapshot.data==null)){
+                                    return Center(child: CircularProgressIndicator());
+                                  } else {
+                                    //Map<String, dynamic> data = snapshot.data.data() as Map<String, dynamic>;
+                                    return Column(
+                                      children: [
+                                        StreamBuilder(
+                                          stream: (snapshot.data["permission"] == "Student") ? 
+                                            FirebaseFirestore.instance.collection("Students Info").doc(posts[index].authorUID).snapshots() : 
+                                            FirebaseFirestore.instance.collection("Alumni Info").doc(posts[index].authorUID).snapshots(),
+                                          builder: (context, secondSnapshot){
+                                            if((secondSnapshot == null)||(secondSnapshot.data==null)){
+                                              return Center(child: CircularProgressIndicator());
+                                            } else {
+                                              return Text((secondSnapshot!=null) ? secondSnapshot.data["name"] : "");
+                                            }
+                                          }
+                                        ),
+                                        Text((snapshot != null) ? snapshot.data["permission"] : ""),
+                                      ],
+                                    );
+                                  }
+                                }
+                              ),
+                            ],
+                          ),
+                      ),
+                    ),
                   ),
                 );
-              },
-              child: Center(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: colors[rng.nextInt(colors.length)],
-                  ),
-                  alignment: Alignment.center,
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(posts[index].title),
-                        StreamBuilder(
-                          stream: FirebaseFirestore.instance.collection("Permission").doc(posts[index].authorUID).snapshots(),
-                          builder: (context, snapshot){
-                            if((snapshot == null)|| (snapshot.data==null)){
-                              return Center(child: CircularProgressIndicator());
-                            } else {
-                              //Map<String, dynamic> data = snapshot.data.data() as Map<String, dynamic>;
-                              return Column(
-                                children: [
-                                  StreamBuilder(
-                                    stream: (snapshot.data["permission"] == "Student") ? 
-                                      FirebaseFirestore.instance.collection("Students Info").doc(posts[index].authorUID).snapshots() : 
-                                      FirebaseFirestore.instance.collection("Alumni Info").doc(posts[index].authorUID).snapshots(),
-                                    builder: (context, secondSnapshot){
-                                      if((secondSnapshot == null)||(secondSnapshot.data==null)){
-                                        return Center(child: CircularProgressIndicator());
-                                      } else {
-                                        return Text((secondSnapshot!=null) ? secondSnapshot.data["name"] : "");
-                                      }
-                                    }
-                                  ),
-                                  Text((snapshot != null) ? snapshot.data["permission"] : ""),
-                                ],
-                              );
-                            }
-                          }
-                        ),
-                      ],
-                    ),
-                ),
+              }
+            ),
+          ),
+          Container(
+            width: 600 ,
+            decoration: BoxDecoration(
+              color: Colors.white
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(4, 5, 4, 0),
+              child: 
+              Row(
+                children: [
+                  IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back)),
+                ],
               ),
-            );
-          }
-        ),
+            ))
+        ],
       );
     }
   }
