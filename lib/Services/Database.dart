@@ -41,8 +41,8 @@ class Database{
 
   Future registerPostData(BuildContext context, Post post) async {
     try{
-      User firebaseUser = FirebaseAuth.instance.currentUser;
-      await posts.doc(firebaseUser.uid).set(post.returnPostData());
+      print(FirebaseAuth.instance.currentUser.uid);
+      await posts.add(post.returnPostData());
     } catch (e){
       return showDialog(context: context, builder: (context){
         return AlertDialog(content: Text(e.toString()));

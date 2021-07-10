@@ -27,23 +27,51 @@ class _ChooseScreenState extends State<ChooseScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: 150,),
-            Text(
-              "ARE YOU A: ",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold
-              ),
-
-            ),
             SizedBox(height: 80,),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                height: 60,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                  child: Text(
+                    "ARE ",
+                    style: TextStyle(
+                      fontFamily: 'mont',
+                      fontSize: 60,
+                      fontWeight: FontWeight.w900
+                    ),
+
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                height: 55,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                  child: Text(
+                    "YOU A: ",
+                    style: TextStyle(
+                      fontFamily: 'mont',
+                      fontSize: 55,
+                      fontWeight: FontWeight.w900
+                    ),
+
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 40,),
             Align(
               alignment: Alignment.centerLeft,
               child: Row(
                 children: [
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Color(0xff0b5c5d)),
+                      backgroundColor: MaterialStateProperty.all(Color(0xfffe4f00)),
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(70),
@@ -62,9 +90,10 @@ class _ChooseScreenState extends State<ChooseScreen> {
                       ),
                     )
                   ),
-                  SizedBox(width: 60,),
+                  SizedBox(width: 30,),
                   Text('STUDENT',
                   style: TextStyle(
+                    fontFamily: 'mont',
                     fontSize: 20,
                     fontWeight: FontWeight.bold
                   ),)
@@ -80,7 +109,7 @@ class _ChooseScreenState extends State<ChooseScreen> {
                     children: [
                       ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Color(0xfffe4f00)),
+                        backgroundColor: MaterialStateProperty.all(Color(0xff0b5c5d)),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(50),
@@ -100,11 +129,12 @@ class _ChooseScreenState extends State<ChooseScreen> {
             ),
                     ],
                   ),
-                  SizedBox(width: 60,),
+                  SizedBox(width: 30,),
                   Text('ALUMNI',
                   style: TextStyle(
+                    fontFamily: 'mont',
                     fontSize: 20,
-                    fontWeight: FontWeight.bold
+                    fontWeight: FontWeight.w700
                   ),)
                 ],
               ),
