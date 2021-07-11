@@ -179,7 +179,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 keyboardType: TextInputType.text,
                                 maxLines: 3,
                                 decoration: InputDecoration(
-                                    hintText: "Introduce",
+                                    hintText: "Introduce yourself!",
                                     filled: true,
                                     focusColor: Colors.grey[200],
                                     fillColor: Colors.grey[300],
