@@ -6,7 +6,6 @@ import 'package:flutter_wall/Screens/initial_screen.dart';
 import 'package:flutter_wall/Services/AuthenticationService.dart';
 import 'package:provider/provider.dart';
 
-
 class ProfileScreen extends StatefulWidget {
   final name;
   final college;
@@ -27,12 +26,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String college;
   String currentYear;
 
+  TextEditingController _aboutmeTextController = new TextEditingController();
   _ProfileScreenState({this.name, this.college, this.currentYear});
 
   @override
   Widget build(BuildContext context) {
     User user = context.watch<User>();
-    if(user==null){
+    if (user == null) {
       return Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     return Scaffold(
@@ -152,6 +152,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         child: Text("Logout")),
                                   ],
                                 ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Padding(padding: EdgeInsets.fromLTRB(0, 50, 0, 0)),
+                            SizedBox(width: 50),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                "About me",
+                                style: TextStyle(
+                                    color: Colors.teal[800],
+                                    fontFamily: 'mont',
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 20,
+                                    height: 1),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(50, 10, 50, 10),
+                              child: TextField(
+                                keyboardType: TextInputType.text,
+                                maxLines: 3,
+                                decoration: InputDecoration(
+                                    hintText: "Introduce yourself!",
+                                    filled: true,
+                                    focusColor: Colors.grey[200],
+                                    fillColor: Colors.grey[300],
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                        borderSide: BorderSide(
+                                            color: Colors.grey[300],
+                                            width: 2))),
+                                controller: _aboutmeTextController,
                               ),
                             ),
                           ],
