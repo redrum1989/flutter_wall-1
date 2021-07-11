@@ -2,9 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wall/Model/Post.dart';
+import 'package:flutter_wall/Screens/main_menu_screen.dart';
 import 'package:flutter_wall/Screens/post_screen.dart';
 import 'package:flutter_wall/Services/Database.dart';
 import 'package:flutter_wall/Services/Database.dart';
+
 
 class PostCreationScreen extends StatefulWidget {
   const PostCreationScreen({Key key}) : super(key: key);
@@ -234,13 +236,18 @@ class Postbutton extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(350, 10, 30, 0),
       child: ElevatedButton(
           onPressed: () async {
+            Navigator.of(context).pushNamed(
+                          MainMenu.routeName
+                        );
+                      
             print(FirebaseAuth.instance.currentUser.uid);
             Post newpost = new Post(
               authorUID: FirebaseAuth.instance.currentUser.uid,
               title: _postTitleTextController.text,
-              text: _postContentTextController.text,
-            );
+              text: _postContentTextController.text);
+            
             await Database().registerPostData(context, newpost);
+            
           },
           child: Text('POST')),
     );

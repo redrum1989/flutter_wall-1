@@ -39,6 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: AppBar(
@@ -55,7 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 .doc(user.uid)
                 .snapshots(),
             builder: (context, snapshotPermission) {
-              if ((snapshotPermission == null) ||
+              if ((snapshotPermission.data == null) ||
                   (snapshotPermission == null)) {
                 return Center(
                   child: CircularProgressIndicator(),

@@ -15,9 +15,12 @@ import 'package:flutter_wall/Services/AuthenticationService.dart';
 import 'package:flutter_wall/Services/PostsGetter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_wall/Model/Post.dart';
+import 'package:flutter_wall/Services/RouteGenerator.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({Key key}) : super(key: key);
+
+  static const routeName = "/mainmenu";
 
   @override
   _MainMenuState createState() => _MainMenuState();
@@ -55,6 +58,13 @@ class _MainMenuState extends State<MainMenu> {
               .doc(userInfo.uid)
               .snapshots(),
           builder: (context, permission) {
+            if ((permission == null) || (permission.data == null)){
+              return Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
             return StreamBuilder(
                 stream: (permission.data["permission"] == "Student")
                     ? FirebaseFirestore.instance
@@ -66,6 +76,13 @@ class _MainMenuState extends State<MainMenu> {
                         .doc(userInfo.uid)
                         .snapshots(),
                 builder: (context, snapshot) {
+                  if ((snapshot == null) || (snapshot.data == null)){
+                    return Scaffold(
+                      body: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  } 
                   return Scaffold(
                     body: SafeArea(
                       child: Container(
@@ -81,14 +98,32 @@ class _MainMenuState extends State<MainMenu> {
                             ButtonBar(
                               alignment: MainAxisAlignment.center,
                               children: [
-                                ElevatedButton(
-                                    onPressed: () {
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 10, 5),
+                                      child: IconButton(onPressed: (){
                                       Navigator.of(context).pushNamed(
                                           PostCreationScreen.routeName);
-                                    },
-                                    child: Text("Create a new post")),
-                                ElevatedButton(
-                                    onPressed: () {
+                                      },
+                                      color: Colors.orange[900],
+                                      icon: Icon(Icons.post_add,
+                                      size: 45,)),
+                                    ),
+                                    Text('TESTIFY',
+                                    style: TextStyle(
+                                      fontFamily: 'mont',
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700
+                                    ),)
+                                  ],
+                                ),
+                                SizedBox(width: 70),
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 10, 5),
+                                      child: IconButton(onPressed: (){
                                       Navigator.of(context).pushNamed(
                                           ProfileScreen.routeName,
                                           arguments: ProfileScreenArguments(
@@ -97,7 +132,18 @@ class _MainMenuState extends State<MainMenu> {
                                                   '',
                                               uid: userInfo.uid));
                                     },
-                                    child: Text("Profile")),
+                                      color: Colors.teal[800],
+                                      icon: Icon(Icons.account_circle_rounded,
+                                      size: 45,)),
+                                    ),
+                                    Text('PROFILE',
+                                    style: TextStyle(
+                                      fontFamily: 'mont',
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700
+                                    ),)
+                                  ],
+                                ),
                               ],
                             ),
                           ],
@@ -146,7 +192,7 @@ class _PostBannerState extends State<PostBanner> {
         children: [
           Container(
             child: GridView.builder(
-                padding: EdgeInsets.fromLTRB(20, 60, 20, 20),
+                padding: EdgeInsets.fromLTRB(20, 100, 20, 20),
                 itemCount: posts.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -175,7 +221,15 @@ class _PostBannerState extends State<PostBanner> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(posts[index].title),
+                              Padding(
+                                padding: const EdgeInsets.all(9.0),
+                                child: Center(
+                                  child: Text(posts[index].title,
+                                  style: TextStyle(
+                                    fontSize: 25
+                                  ),),
+                                ),
+                              ),
                               StreamBuilder(
                                   stream: FirebaseFirestore.instance
                                       .collection("Permission")
@@ -236,19 +290,53 @@ class _PostBannerState extends State<PostBanner> {
                   );
                 }),
           ),
-          Container(
-              width: 600,
-              decoration: BoxDecoration(color: Colors.white),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(4, 5, 4, 0),
-                child: Row(
-                  children: [
-                    IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
-                  ],
-                ),
-              ))
+          Container(child: Starttext()),
+          Readingtext(), 
         ],
       );
     }
+  }
+}
+
+class Readingtext extends StatelessWidget {
+  const Readingtext({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 600,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(15, 40, 4, 0),
+          child: Text('READING',
+          style: TextStyle(
+            fontFamily: 'mont',
+            fontSize: 50,
+            fontWeight: FontWeight.w900,
+            color: Colors.teal[900]
+          ),),
+        ));
+  }
+}
+
+class Starttext extends StatelessWidget {
+  const Starttext({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 600,
+        decoration: BoxDecoration(color: Colors.white),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(15, 15, 4, 50),
+          child: Text('START',
+          style: TextStyle(
+            fontFamily: 'mont',
+            fontSize: 30
+          ),),
+        ));
   }
 }
