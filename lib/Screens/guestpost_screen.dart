@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_wall/Model/PostScreenArguments.dart';
 import 'package:flutter_wall/Model/StudentData.dart';
-import 'package:flutter_wall/Screens/guestpost_screen.dart';
 import 'package:flutter_wall/Screens/post_screen.dart';
 import 'package:flutter_wall/Screens/postcreation_screen.dart';
 import 'package:flutter_wall/Screens/profile_screen.dart';
@@ -14,48 +13,20 @@ import 'package:flutter_wall/Services/AuthenticationService.dart';
 import 'package:flutter_wall/Services/PostsGetter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_wall/Model/Post.dart';
+import 'package:flutter_wall/Screens/guestpost_screen.dart';
 
+class GuestPostScreen extends StatefulWidget {
+  const GuestPostScreen({ Key key }) : super(key: key);
 
-class MainMenu extends StatefulWidget {
-  const MainMenu({ Key key }) : super(key: key);
-
+   static const routeName = "/guestpost";
   @override
-  _MainMenuState createState() => _MainMenuState();
+  _GuestPostScreenState createState() => _GuestPostScreenState();
 }
 
-class _MainMenuState extends State<MainMenu> {
-
-  User userInfo;
-
+class _GuestPostScreenState extends State<GuestPostScreen> {
   @override
   Widget build(BuildContext context) {
-    userInfo = context.watch<User>();
-    if(userInfo.isAnonymous){
-      return Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Guest Mode"),   
-                ElevatedButton(
-                  onPressed: (){
-                    context.read<AuthenticationService>().signOut().then((String msg){
-                      Phoenix.rebirth(context);
-                    });
-                  },
-                child: Text("Logout")
-                ),
-                ElevatedButton(onPressed: (){
-                  Navigator.of(context).pushNamed(GuestPostScreen.routeName);
-                }, child: Text('proceed'))
-              ],
-            ),
-          ),
-        ),
-      );
-    } else if (userInfo != null) {
-      return Scaffold(
+    return Scaffold(
         body: SafeArea(
           child: Container(
             child: Column(
@@ -92,17 +63,8 @@ class _MainMenuState extends State<MainMenu> {
           ),
         ),
       );
-    } else {
-      return Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
-    
   }
 }
-
 class PostBanner extends StatefulWidget {
   const PostBanner({ Key key }) : super(key: key);
 

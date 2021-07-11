@@ -8,7 +8,7 @@ import 'package:flutter_wall/Screens/post_screen.dart';
 import 'package:flutter_wall/Screens/postcreation_screen.dart';
 import 'package:flutter_wall/Screens/profile_screen.dart';
 import 'package:flutter_wall/Screens/student_register_screen.dart';
-import 'package:flutter_wall/Screens/postcreation_screen.dart';
+import 'package:flutter_wall/Screens/guestpost_screen.dart';
 import 'package:provider/provider.dart';
 
 Route<Null> getGenerateRoute(RouteSettings settings){
@@ -146,6 +146,24 @@ Route<Null> getGenerateRoute(RouteSettings settings){
           return ListenableProvider(
             create: (context) => animation,
             child: PostCreationScreen(),
+          );
+        },
+        transitionDuration: Duration(milliseconds: 500),
+        transitionsBuilder: (context, animation, secondaryAnimation, child){
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        }
+      );
+
+    case GuestPostScreen.routeName:
+      return PageRouteBuilder(
+        settings: RouteSettings(name: GuestPostScreen.routeName),
+        pageBuilder: (context, animation, secondaryAnimation){
+          return ListenableProvider(
+            create: (context) => animation,
+            child: GuestPostScreen(),
           );
         },
         transitionDuration: Duration(milliseconds: 500),
