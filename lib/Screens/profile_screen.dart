@@ -7,27 +7,30 @@ import 'package:flutter_wall/Services/AuthenticationService.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
-  final name;
-  final college;
-  final currentYear;
+  final uid;
+  final description;
 
-  const ProfileScreen({Key key, this.name, this.college, this.currentYear})
-      : super(key: key);
+  const ProfileScreen({Key key, this.uid, this.description}) : super(key: key);
 
   static const routeName = "/profile";
 
   @override
-  _ProfileScreenState createState() => _ProfileScreenState(
-      name: name, college: college, currentYear: currentYear);
+  _ProfileScreenState createState() =>
+      _ProfileScreenState(uid: this.uid, description: this.description);
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String name;
-  String college;
-  String currentYear;
+  String uid;
+  String description;
 
   TextEditingController _aboutmeTextController = new TextEditingController();
-  _ProfileScreenState({this.name, this.college, this.currentYear});
+  _ProfileScreenState({this.uid, this.description});
+
+  @override
+  void initState() {
+    _aboutmeTextController.text = description;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -190,6 +193,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             width: 2))),
                                 controller: _aboutmeTextController,
                               ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                (snapshotPermission.data["permission"] ==
+                                        "Student")
+                                    ? FirebaseFirestore.instance
+                                        .collection("Students Info")
+                                        .doc(uid)
+                                        .set({
+                                        'description':
+                                            _aboutmeTextController.text
+                                      }, SetOptions(merge: true))
+                                    : FirebaseFirestore.instance
+                                        .collection("Alumni Info")
+                                        .doc(user.uid)
+                                        .set({
+                                        'description':
+                                            _aboutmeTextController.text
+                                      }, SetOptions(merge: true));
+                              },
+                              child: Text("Save"),
                             ),
                           ],
                         ),
