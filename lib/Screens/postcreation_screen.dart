@@ -18,8 +18,8 @@ class PostCreationScreen extends StatefulWidget {
 }
 
 class _PostCreationScreenState extends State<PostCreationScreen> {
-  TextEditingController _postcontentTextController =
-      new TextEditingController();
+  TextEditingController _postcontentTextController = new TextEditingController();
+  TextEditingController _collegeTextController = new TextEditingController();
   TextEditingController _postTitleTextController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class _PostCreationScreenState extends State<PostCreationScreen> {
                 TextController(
                     postTitleTextController: _postTitleTextController),
                 College(),
-                Collegetext(),
+                Collegetext(collegeTextController: _collegeTextController,),
                 Writehere(),
                 WiteHereText(
                   postContentTextController: _postcontentTextController,
@@ -49,6 +49,7 @@ class _PostCreationScreenState extends State<PostCreationScreen> {
                 Postbutton(
                   postTitleTextController: _postTitleTextController,
                   postContentTextController: _postcontentTextController,
+                  collegeTextController: _collegeTextController
                 )
               ],
             ),
@@ -139,9 +140,12 @@ class Writehere extends StatelessWidget {
 
 class Collegetext extends StatelessWidget {
   const Collegetext({
+    @required TextEditingController collegeTextController,
     Key key,
-  }) : super(key: key);
+  }) : _collegeTextController = collegeTextController,
+  super(key: key);
 
+  final TextEditingController _collegeTextController;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -151,7 +155,10 @@ class Collegetext extends StatelessWidget {
               focusColor: Colors.grey[800],
               enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
-                  borderSide: BorderSide(color: Colors.black, width: 3)))),
+                  borderSide: BorderSide(color: Colors.black, width: 3))),
+                  controller: _collegeTextController,
+                  ),
+          
     );
   }
 }
@@ -224,12 +231,16 @@ class Postbutton extends StatelessWidget {
     Key key,
     @required TextEditingController postTitleTextController,
     @required TextEditingController postContentTextController,
+    @required TextEditingController collegeTextController,
   })  : _postTitleTextController = postTitleTextController,
         _postContentTextController = postContentTextController,
+        _collegeTextController = collegeTextController,
+        
         super(key: key);
 
   final TextEditingController _postTitleTextController;
   final TextEditingController _postContentTextController;
+  final TextEditingController _collegeTextController;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -244,8 +255,9 @@ class Postbutton extends StatelessWidget {
             Post newpost = new Post(
               authorUID: FirebaseAuth.instance.currentUser.uid,
               title: _postTitleTextController.text,
-              text: _postContentTextController.text);
-            
+              text: _postContentTextController.text,
+              college: _collegeTextController.text);
+              
             await Database().registerPostData(context, newpost);
             
           },

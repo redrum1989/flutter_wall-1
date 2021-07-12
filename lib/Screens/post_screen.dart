@@ -1,26 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_wall/Screens/alumni_register_screen.dart';
+import 'package:flutter_wall/Model/Post.dart';
 
 class PostScreen extends StatefulWidget {
   final authorUID;
   final title;
   final text;
-  PostScreen({Key key, this.title, this.authorUID, this.text})
+  final college;
+  PostScreen({Key key, this.title, this.authorUID, this.text, this.college})
       : super(key: key);
 
   static const routeName = "/post_screen";
 
   @override
   _PostScreenState createState() =>
-      _PostScreenState(authorUID: authorUID, text: text, title: title);
+      _PostScreenState(authorUID: authorUID, text: text, title: title, college: college);
 }
 
 class _PostScreenState extends State<PostScreen> {
   String authorUID;
   String title;
   String text;
+  String college;
 
-  _PostScreenState({this.authorUID, this.text, this.title});
+  _PostScreenState({this.authorUID, this.text, this.title, this.college});
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +103,7 @@ class _PostScreenState extends State<PostScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(title),
+                          Text(college),
                           Text(text),
                         ],
                       ),

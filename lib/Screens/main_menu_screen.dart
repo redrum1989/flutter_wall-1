@@ -208,7 +208,8 @@ class _PostBannerState extends State<PostBanner> {
                           arguments: PostScreenArguments(
                               authorUID: posts[index].authorUID,
                               text: posts[index].text,
-                              title: posts[index].title),
+                              title: posts[index].title,
+                              college: posts[index].college),
                         );
                       },
                       child: Center(
@@ -224,10 +225,15 @@ class _PostBannerState extends State<PostBanner> {
                               Padding(
                                 padding: const EdgeInsets.all(9.0),
                                 child: Center(
-                                  child: Text(posts[index].title,
-                                  style: TextStyle(
-                                    fontSize: 25
-                                  ),),
+                                  child: Stack(
+                                    children: [
+                                      Text(posts[index].title,
+                                      style: TextStyle(
+                                        fontSize: 25
+                                      ),),
+                                      Text(posts[index].college)
+                                    ],
+                                  ),
                                 ),
                               ),
                               StreamBuilder(
