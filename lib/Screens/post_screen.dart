@@ -8,14 +8,15 @@ class PostScreen extends StatefulWidget {
   final title;
   final text;
   final college;
+
   PostScreen({Key key, this.title, this.authorUID, this.text, this.college})
       : super(key: key);
 
   static const routeName = "/post_screen";
 
   @override
-  _PostScreenState createState() =>
-      _PostScreenState(authorUID: authorUID, text: text, title: title, college: college);
+  _PostScreenState createState() => _PostScreenState(
+      authorUID: authorUID, text: text, title: title, college: college);
 }
 
 class _PostScreenState extends State<PostScreen> {

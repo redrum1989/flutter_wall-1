@@ -14,7 +14,6 @@ import 'package:flutter_wall/Services/PostsGetter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_wall/Model/Post.dart';
 import 'package:flutter_wall/Screens/guestpost_screen.dart';
-
 import 'initial_screen.dart';
 
 class GuestPostScreen extends StatefulWidget {

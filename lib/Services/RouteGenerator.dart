@@ -102,6 +102,7 @@ Route<Null> getGenerateRoute(RouteSettings settings) {
             return ListenableProvider(
               create: (context) => animation,
               child: PostScreen(
+                  college: args.college,
                   authorUID: args.authorUID,
                   text: args.text,
                   title: args.title),
