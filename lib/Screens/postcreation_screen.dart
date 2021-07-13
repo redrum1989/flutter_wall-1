@@ -23,72 +23,77 @@ class _PostCreationScreenState extends State<PostCreationScreen> {
   TextEditingController _postTitleTextController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: SafeArea(
-          child: Scaffold(
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-        body: Stack(
-          children: [
-            ListView(
+    return Stack(
+      children: [
+         Image(image: AssetImage('assets/img/contentbg.png')),
+        Container(
+          child: SafeArea(
+              child: Scaffold(
+            appBar: AppBar(
+              iconTheme: IconThemeData(color: Colors.black),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+            body: Stack(
               children: [
-                Ttiel(),
-                TextController(
-                    postTitleTextController: _postTitleTextController),
-                College(),
-                Collegetext(
-                  collegeTextController: _collegeTextController,
+               
+                ListView(
+                  children: [
+                    Ttiel(),
+                    TextController(
+                        postTitleTextController: _postTitleTextController),
+                    College(),
+                    Collegetext(
+                      collegeTextController: _collegeTextController,
+                    ),
+                    Writehere(),
+                    WiteHereText(
+                      postContentTextController: _postcontentTextController,
+                    ),
+                    SizedBox(height: 10),
+                    Postbutton(
+                        postTitleTextController: _postTitleTextController,
+                        postContentTextController: _postcontentTextController,
+                        collegeTextController: _collegeTextController)
+                  ],
                 ),
-                Writehere(),
-                WiteHereText(
-                  postContentTextController: _postcontentTextController,
+                Container(
+                  height: 70,
+                  color: Colors.white,
+                  child: Column(children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'START',
+                          style: TextStyle(
+                              color: Colors.yellow[600],
+                              fontFamily: 'mont',
+                              fontWeight: FontWeight.w900,
+                              fontSize: 30,
+                              height: 0.5),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text('TESTIFYING',
+                                style: TextStyle(
+                                    color: Colors.teal[800],
+                                    fontFamily: 'mont',
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 50,
+                                    height: 1)))),
+                  ]),
                 ),
-                SizedBox(height: 30),
-                Postbutton(
-                    postTitleTextController: _postTitleTextController,
-                    postContentTextController: _postcontentTextController,
-                    collegeTextController: _collegeTextController)
               ],
             ),
-            Container(
-              height: 70,
-              color: Colors.white,
-              child: Column(children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'START',
-                      style: TextStyle(
-                          color: Colors.yellow[600],
-                          fontFamily: 'mont',
-                          fontWeight: FontWeight.w900,
-                          fontSize: 30,
-                          height: 0.5),
-                    ),
-                  ),
-                ),
-                Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text('TESTIFYING',
-                            style: TextStyle(
-                                color: Colors.teal[800],
-                                fontFamily: 'mont',
-                                fontWeight: FontWeight.w900,
-                                fontSize: 50,
-                                height: 1)))),
-              ]),
-            ),
-          ],
+          )),
         ),
-      )),
+      ],
     );
   }
 }
@@ -107,9 +112,11 @@ class WiteHereText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(23, 0, 23, 0),
       child: TextFormField(
+       keyboardType: TextInputType.text,
+       maxLines: 20,
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.only(bottom: 350),
-            focusColor: Colors.grey[800],
+            contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+            
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide: BorderSide(color: Colors.black, width: 3))),
@@ -243,8 +250,17 @@ class Postbutton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(350, 10, 30, 0),
+      padding: const EdgeInsets.fromLTRB(350, 0, 30, 0),
       child: ElevatedButton(
+        style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(0),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(22))),
+                      padding: MaterialStateProperty.all(
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Color(0xff0b5c5d))),
+
           onPressed: () async {
             Navigator.of(context).pushNamed(MainMenu.routeName);
             print(FirebaseAuth.instance.currentUser.uid);

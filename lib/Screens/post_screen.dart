@@ -39,7 +39,7 @@ class _PostScreenState extends State<PostScreen> {
             appBar: AppBar(
               centerTitle: true,
               iconTheme: IconThemeData(color: Colors.black),
-              title: Text(title, style: TextStyle(color: Colors.black)),
+             
               backgroundColor: Colors.transparent,
               elevation: 0.0,
             ),
@@ -48,9 +48,8 @@ class _PostScreenState extends State<PostScreen> {
                 // Put background here.
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.red[100],
                     image: DecorationImage(
-                      image: AssetImage("assets/img/background.jpg"),
+                      image: AssetImage("assets/img/contentbg.png"),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -59,6 +58,33 @@ class _PostScreenState extends State<PostScreen> {
                 SafeArea(
                   child: ListView(
                     children: [
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(title,
+                              style: TextStyle(
+                                height: 0.9,
+                                fontFamily: 'mont',
+                                fontWeight: FontWeight.w900,
+                                fontSize: 50
+                              ),),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            child: Align(alignment: Alignment.topLeft,
+                              child: Text("FROM: " + college.toUpperCase(),
+                              style: TextStyle(
+                                fontFamily: 'mont',
+                                fontSize: 20
+                              ),)),
+                          ),
+                          
+                        ],
+                      ),
                       StreamBuilder(
                           stream: FirebaseFirestore.instance
                               .collection("Permission")
@@ -89,24 +115,47 @@ class _PostScreenState extends State<PostScreen> {
                                               child:
                                                   CircularProgressIndicator());
                                         } else {
-                                          return Text(
-                                              secondSnapshot.data["name"]);
+                                          return Padding(
+                                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                            child: Align(alignment: Alignment.topLeft,
+                                              child: Text("by: " +
+                                                  secondSnapshot.data["name"],
+                                                  style: TextStyle(
+                                                    fontFamily: 'mont',
+                                                    fontSize: 20
+                                                  ),),
+                                            ),
+                                          );
                                         }
                                       }),
-                                  Text((snapshot != null)
-                                      ? snapshot.data["permission"]
-                                      : ""),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                    child: Align(alignment: Alignment.topLeft,
+                                      child: Text((snapshot != null)
+                                          ? snapshot.data["permission"]
+                                          : "",
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontFamily: 'mont',
+                                            fontWeight: FontWeight.w700,
+                                            fontStyle: FontStyle.italic
+                                          ),),
+                                    ),
+                                  ),
                                 ],
                               );
                             }
                           }),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(title),
-                          Text(college),
-                          Text(text),
-                        ],
+                      SizedBox(height: 15),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        child: Text("        " + text,
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                          
+                          fontFamily: 'mont',
+                          fontSize: 15
+                        ),),
                       ),
                     ],
                   ),

@@ -118,7 +118,7 @@ class _MainMenuState extends State<MainMenu> {
                                     ),)
                                   ],
                                 ),
-                                SizedBox(width: 70),
+                                SizedBox(width: 120),
                                 Column(
                                   children: [
                                     Padding(
@@ -174,7 +174,7 @@ class _PostBannerState extends State<PostBanner> {
   Random rng = new Random();
 
   List<Color> colors = [
-    Colors.yellow[800],
+    Colors.yellow[300],
     Colors.teal[700],
     Colors.amber[800],
     Colors.grey,
@@ -192,7 +192,7 @@ class _PostBannerState extends State<PostBanner> {
         children: [
           Container(
             child: GridView.builder(
-                padding: EdgeInsets.fromLTRB(20, 100, 20, 20),
+                padding: EdgeInsets.fromLTRB(20, 110, 20, 20),
                 itemCount: posts.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -218,20 +218,34 @@ class _PostBannerState extends State<PostBanner> {
                             borderRadius: BorderRadius.circular(12),
                             color: colors[rng.nextInt(colors.length)],
                           ),
-                          alignment: Alignment.center,
+                          
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.all(9.0),
-                                child: Center(
-                                  child: Stack(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                  child: Column(
                                     children: [
-                                      Text(posts[index].title,
+                                      Text(posts[index].title.toUpperCase(),
                                       style: TextStyle(
-                                        fontSize: 25
+                                        fontFamily: 'mont',
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 20
                                       ),),
-                                      Text(posts[index].college)
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 6),
+                                        child: Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Text(posts[index].college.toUpperCase(),
+                                          style: TextStyle(
+                                            fontFamily: 'mont',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 15
+                                          ),)),
+                                      )
                                     ],
                                   ),
                                 ),
@@ -274,16 +288,32 @@ class _PostBannerState extends State<PostBanner> {
                                                       child:
                                                           CircularProgressIndicator());
                                                 } else {
-                                                  return Text(
-                                                      (secondSnapshot != null)
-                                                          ? secondSnapshot
-                                                              .data["name"]
-                                                          : "");
+                                                  return Padding(
+                                                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                                    child: Align(alignment: Alignment.topLeft,
+                                                      child: Text(
+                                                          (secondSnapshot != null)
+                                                              ? "by: " + secondSnapshot.data["name"]
+                                                              : "",
+                                                              style: TextStyle(
+                                                                fontFamily: 'mont'
+                                                              ),),
+                                                    ),
+                                                  );
                                                 }
                                               }),
-                                          Text((snapshot != null)
-                                              ? snapshot.data["permission"]
-                                              : ""),
+                                          Align(alignment: Alignment.topLeft,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                              child: Text((snapshot != null)
+                                                  ? snapshot.data["permission"]
+                                                  : "",
+                                                  style: TextStyle(
+                                                    fontStyle: FontStyle.italic
+                                                  ),)
+                                                
+                                            ),
+                                          ),
                                         ],
                                       );
                                     }
