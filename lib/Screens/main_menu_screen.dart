@@ -17,6 +17,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter_wall/Model/Post.dart';
 import 'package:flutter_wall/Services/RouteGenerator.dart';
 
+import 'initial_screen.dart';
+
 class MainMenu extends StatefulWidget {
   const MainMenu({Key key}) : super(key: key);
 
@@ -39,13 +41,61 @@ class _MainMenuState extends State<MainMenu> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Guest Mode"),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  child: Container(
+                    height: 140,
+                    child: Image(image: AssetImage('assets/img/q.png'))),
+                ),
+                Text("YOU ARE CURRENTLY IN",
+                style: TextStyle(
+                  fontFamily: 'mont',
+                  fontSize: 20
+                ),),
+                Text('GUEST MODE',
+                style: TextStyle(
+                  fontFamily: 'mont',
+                  fontSize: 40 ,
+                  fontWeight: FontWeight.w900 
+                ),),
                 ElevatedButton(
+                   style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0),
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(22))),
+                    padding: MaterialStateProperty.all(
+                        EdgeInsets.symmetric(horizontal: 30, vertical: 10)),
+                    backgroundColor:
+                        MaterialStateProperty.all(Color(0xff0b5c5d))),
                     onPressed: () {
                       Navigator.of(context)
                           .pushNamed(GuestPostScreen.routeName);
                     },
-                    child: Text('proceed'))
+                    child: Text('PROCEED',
+                    style: TextStyle(
+                      fontFamily: 'mont',
+                      fontSize: 15
+                    ),)),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        elevation: MaterialStateProperty.all(0),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(22))),
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(horizontal: 35, vertical: 10)),
+                        backgroundColor:
+                            MaterialStateProperty.all(Color(0xfffad000))),
+                        onPressed: () {
+                          context.read<AuthenticationService>().signOut();
+                        Navigator.of(context).popUntil(
+                            ModalRoute.withName(InitialScreen.routeName));
+                      },
+                        child: Text('LOGOUT',
+                        style: TextStyle(
+                          fontFamily: 'mont',
+                          fontSize: 15,
+                          color: Colors.grey
+                        ),))
               ],
             ),
           ),
@@ -187,7 +237,7 @@ class _PostBannerState extends State<PostBanner> {
 
     if ((posts == null) || (userData == null)) {
       return Center(child: CircularProgressIndicator());
-    } else {
+    } else {  
       return Stack(
         children: [
           Container(

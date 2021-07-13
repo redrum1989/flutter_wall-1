@@ -43,12 +43,22 @@ class _GuestPostScreenState extends State<GuestPostScreen> {
                 alignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
+                    style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(0),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(22))),
+                      padding: MaterialStateProperty.all(
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 10)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Color(0xff0b5c5d))),
+                      
+                      
                       onPressed: () {
                         context.read<AuthenticationService>().signOut();
                         Navigator.of(context).popUntil(
                             ModalRoute.withName(InitialScreen.routeName));
                       },
-                      child: Text("Logout")),
+                      child: Text("LOGOUT")),
                 ],
               ),
             ],
@@ -88,7 +98,7 @@ class _PostBannerState extends State<PostBanner> {
         children: [
           Container(
             child: GridView.builder(
-                padding: EdgeInsets.fromLTRB(20, 60, 20, 20),
+                padding: EdgeInsets.fromLTRB(20, 110, 20, 20),
                 itemCount: posts.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -104,7 +114,8 @@ class _PostBannerState extends State<PostBanner> {
                           arguments: PostScreenArguments(
                               authorUID: posts[index].authorUID,
                               text: posts[index].text,
-                              title: posts[index].title),
+                              title: posts[index].title,
+                              college: posts[index].college),
                         );
                       },
                       child: Center(
@@ -117,7 +128,26 @@ class _PostBannerState extends State<PostBanner> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(posts[index].title),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                child: Text(posts[index].title.toUpperCase(),
+                                        style: TextStyle(
+                                          fontFamily: 'mont',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 20
+                                        ),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(10, 6, 0, 0),
+                                child: Align(alignment: Alignment.centerLeft,
+                                  child: Text(posts[index].college.toUpperCase(),
+                                              style: TextStyle(
+                                                fontFamily: 'mont',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 15
+                                              ),),
+                                ),
+                              ),
                               StreamBuilder(
                                   stream: FirebaseFirestore.instance
                                       .collection("Permission")
@@ -156,16 +186,33 @@ class _PostBannerState extends State<PostBanner> {
                                                       child:
                                                           CircularProgressIndicator());
                                                 } else {
-                                                  return Text(
-                                                      (secondSnapshot != null)
-                                                          ? secondSnapshot
-                                                              .data["name"]
-                                                          : "");
+                                                  return 
+                                                  
+                                                  Align(alignment: Alignment.centerLeft,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                                      child: Text(
+                                                          (secondSnapshot != null)
+                                                              ? "by: " + secondSnapshot
+                                                                  .data["name"]
+                                                              : "", style: TextStyle(
+                                                                    fontFamily: 'mont'
+                                                                  ),),
+                                                    ),
+                                                  );
                                                 }
                                               }),
-                                          Text((snapshot != null)
-                                              ? snapshot.data["permission"]
-                                              : ""),
+                                          Align(alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                              child: Text((snapshot != null)
+                                                  ? snapshot.data["permission"]
+                                                  : "",
+                                                      style: TextStyle(
+                                                        fontStyle: FontStyle.italic
+                                                      ),),
+                                            ),
+                                          ),
                                         ],
                                       );
                                     }
@@ -179,16 +226,29 @@ class _PostBannerState extends State<PostBanner> {
                 }),
           ),
           Container(
-              width: 600,
-              decoration: BoxDecoration(color: Colors.white),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(4, 5, 4, 0),
-                child: Row(
-                  children: [
-                    IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
-                  ],
-                ),
-              ))
+            decoration: BoxDecoration(color: Colors.white),
+        width: 600,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(15, 40, 4, 0),
+          child: Text('READING',
+          style: TextStyle(
+            fontFamily: 'mont',
+            fontSize: 50,
+            fontWeight: FontWeight.w900,
+            color: Colors.teal[900]
+          ),),
+        )),
+        Container(
+        width: 600,
+        
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(15, 15, 4, 50),
+          child: Text('START',
+          style: TextStyle(
+            fontFamily: 'mont',
+            fontSize: 30
+          ),),
+        )),
         ],
       );
     }
