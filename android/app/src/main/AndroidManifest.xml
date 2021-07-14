@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.signusfalcon.flutter_wall">
+    
    <application
-        android:label="flutter_wall"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Testify"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

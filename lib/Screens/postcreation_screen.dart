@@ -113,10 +113,12 @@ class WiteHereText extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(23, 0, 23, 0),
       child: TextFormField(
        keyboardType: TextInputType.text,
-       maxLines: 20,
+       maxLines:30,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 10),
-            
+            filled: true,
+            focusColor: Colors.grey[300],
+            fillColor: Colors.grey[300],
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide: BorderSide(color: Colors.black, width: 3))),
@@ -160,7 +162,10 @@ class Collegetext extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(23, 0, 23, 0),
       child: TextFormField(
         decoration: InputDecoration(
-            focusColor: Colors.grey[800],
+           filled: true,
+            focusColor: Colors.grey[300],
+            fillColor: Colors.grey[200],
+            
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide: BorderSide(color: Colors.black, width: 3))),
@@ -223,7 +228,10 @@ class TextController extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(23, 0, 23, 0),
       child: TextFormField(
         decoration: InputDecoration(
-            focusColor: Colors.grey[800],
+             filled: true,
+            focusColor: Colors.grey[300],
+            fillColor: Colors.grey[200],
+         
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
                 borderSide: BorderSide(color: Colors.black, width: 3))),
