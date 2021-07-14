@@ -104,68 +104,87 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   Column(
                                     children: [
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        
                                         children: [
-                                          Container(
-                                            width: MediaQuery.of(context).size.width / 2.75,
-                                            height:
-                                                MediaQuery.of(context).size.width / 2.75,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(20),
-                                              border: Border.all(
-                                                color: Colors.black,
-                                                width: 4,
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(10, 0, 5, 0),
+                                            child: Container(
+                                              width: MediaQuery.of(context).size.width / 2.75,
+                                              height:
+                                                  MediaQuery.of(context).size.width / 2.75,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(20),
+                                                border: Border.all(
+                                                  color: Colors.black,
+                                                  width: 4,
+                                                ),
                                               ),
-                                            ),
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(20),
-                                              child: Image.asset("assets/img/dp.jpg", scale: 0.7,),
+                                              child: ClipRRect(
+                                                borderRadius: BorderRadius.circular(20),
+                                                child: Image.asset("assets/img/dp.jpg", scale: 0.7,),
+                                              ),
                                             ),
                                           ),
                                           Container(
                                             
                                             child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                             
                                               children: [
                                                 (snapshotPermission.data["permission"] ==
                                                         "Student")
                                                     ? Padding(
-                                                      padding: const EdgeInsets.only(top: 15),
-                                                      child: Text(
-                                                          "NAME:  " +"\n"+ "  "+
-                                                              snapshot.data["name"] +
-                                                              "\n" +
-                                                              "From: " + "\n" + "  "+
-                                                              snapshot.data["college"] +
-                                                              "\n" +"  "+
-                                                              snapshot.data["currentYear"] + " student",
-                                                          style: TextStyle(
-                                                              fontFamily: 'mont',
-                                                              fontSize: 20,
-                                                              fontWeight: FontWeight.bold),
-                                                        ),
-                                                    )
-                                                    : Text(
-                                                        "Name:   " +
-                                                            snapshot.data["name".toUpperCase()] +
-                                                            "\n" +
-                                                            "College:  " +
-                                                            snapshot.data["college"] +
-                                                            "\n" +
-                                                            "Current Work:  " +
-                                                            snapshot.data["currentWork"] +
-                                                            "\n" +
-                                                            " Year Started:  " +
-                                                            snapshot.data["yearStarted"] +
-                                                            "\n" +
-                                                            "Year Graduated:  " +
-                                                            snapshot.data["yearGraduated"],
-                                                        style: TextStyle(
-                                                            fontSize: 30,
-                                                            fontWeight: FontWeight.bold),
+                                                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                                      child: Align(alignment: Alignment.centerLeft,
+                                                        child: Text(
+                                                            "NAME:  " +"\n"+ "  "+
+                                                                snapshot.data["name"] +
+                                                                "\n" +
+                                                                "From: " + "\n" + "  "+
+                                                                snapshot.data["college"] +
+                                                                "\n" +"  "+
+                                                                snapshot.data["currentYear"] + " student",
+                                                                
+                                                            style: TextStyle(
+                                                              
+                                                                fontFamily: 'mont',
+                                                                fontSize: 20,
+                                                                fontWeight: FontWeight.bold),
+                                                          ),
                                                       ),
+                                                    )
+                                                    : Align(alignment: Alignment.bottomLeft,
+                                                      child: Container(
+                                                        constraints: BoxConstraints(maxWidth: 450),
+                                                        child: Flexible(
+                                                          child: Text(
+                                                              "Name:   " + "\n" +
+                                                                  snapshot.data["name"] +
+                                                                  "\n" +
+                                                                  "College:  " + "\n" +
+                                                                  snapshot.data["college"] +
+                                                                  "\n" +
+                                                                  "Current Work:  " +
+                                                                  snapshot.data["currentWork"] +
+                                                                  "\n" +
+                                                                  "Year Started:  " +
+                                                                  snapshot.data["yearStarted"] +
+                                                                  "\n" +
+                                                                  "Year Graduated:  " +
+                                                                  snapshot.data["yearGraduated"],
+                                                              
+                                                              softWrap: true,
+                                                              
+                                                              style: TextStyle(
+                                                                
+                                                                  fontSize: 20,
+                                                                  fontWeight: FontWeight.bold),
+                                                                  
+                                                            ),
+                                                        ),
+                                                      ),
+                                                    ),
                                                 Padding(
-                                                  padding: const EdgeInsets.fromLTRB(0, 0, 140, 0),
+                                                  padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
                                                   child: ElevatedButton(
                                                     style: ButtonStyle(
                                                       elevation: MaterialStateProperty.all(0),

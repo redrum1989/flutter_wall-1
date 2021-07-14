@@ -134,7 +134,9 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
               child: TextFormField(
+                obscureText: true,
                 decoration: InputDecoration(
+                  
                   filled: true,
                   focusColor: Colors.grey[200],
                   fillColor: Colors.grey[300],

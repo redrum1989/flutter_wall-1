@@ -279,12 +279,14 @@ class _PostBannerState extends State<PostBanner> {
                                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                   child: Column(
                                     children: [
-                                      Text(posts[index].title.toUpperCase(),
-                                      style: TextStyle(
-                                        fontFamily: 'mont',
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 20
-                                      ),),
+                                      Align(alignment: Alignment.centerLeft,
+                                        child: Text(posts[index].title.toUpperCase(),
+                                        style: TextStyle(
+                                          fontFamily: 'mont',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 20
+                                        ),),
+                                      ),
                                       Padding(
                                         padding: const EdgeInsets.only(top: 6),
                                         child: Align(
