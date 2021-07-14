@@ -62,7 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       'PROFILE',
                       style: TextStyle(
                         fontFamily: 'mont',
-                        fontSize: 80,
+                        fontSize: 60,
                         fontWeight: FontWeight.w900,
                         color: Colors.amber[900]
                       ),
@@ -171,14 +171,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                   "\n" +
                                                                   "Year Graduated:  " +
                                                                   snapshot.data["yearGraduated"],
-                                                              
-                                                              softWrap: true,
-                                                              
                                                               style: TextStyle(
-                                                                
                                                                   fontSize: 20,
                                                                   fontWeight: FontWeight.bold),
-                                                                  
                                                             ),
                                                         ),
                                                       ),
@@ -265,8 +260,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                               EdgeInsets.symmetric(horizontal: 30, vertical: 10)),
                                                           backgroundColor:
                                                               MaterialStateProperty.all(Color(0xff0b5c5d))),
-                                                  
-                                                
                                                 onPressed: () {
                                                   (snapshotPermission.data["permission"] ==
                                                           "Student")

@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_wall/Model/StudentData.dart';
 import 'package:flutter_wall/Screens/initial_screen.dart';
 import 'package:flutter_wall/Services/Database.dart';
@@ -180,6 +181,7 @@ class NameText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
       child: TextFormField(
+        inputFormatters: [LengthLimitingTextInputFormatter(28)],
         decoration: InputDecoration(
         filled: true,
         focusColor: Colors.grey[800],
