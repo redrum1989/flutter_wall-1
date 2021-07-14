@@ -52,13 +52,14 @@ class _PostCreationScreenState extends State<PostCreationScreen> {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text('START',
-                      style: TextStyle(
-                        color: Colors.yellow[600],
-                        fontFamily: 'mont',
-                        fontWeight: FontWeight.w900,
-                        fontSize: 30,   
-                        height: 0.5
-                      ),),
+                        style: TextStyle(
+                          color: Colors.yellow[600],
+                          fontFamily: 'mont',
+                          fontWeight: FontWeight.w900,
+                          fontSize: 30,   
+                          height: 0.5
+                        ),
+                      ),
                     ),
                   ),
                   Padding(
